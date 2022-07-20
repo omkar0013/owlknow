@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Login / Sign Up</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        --color-primary: #009579;
+        --color-primary-dark: #007f67;
+        --color-secondary: #252c6a;
+        --color-error: #cc3333;
+        --color-success: #4bb544;
+        --border-radius: 4px;
+    
+        margin: 0;
+        height: 100vh;
+        font-size: 18px;
+        display: flex;
+        background: url("https://startup.mp.gov.in/assets/img/login-bg.png"),url("https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-2650.jpg?t=st=1658325520~exp=1658326120~hmac=b789402360b2922acee67a25a76f797f7102d8d8b22d79a869d9c4aba78eafdc&w=740"),url("https://app.dfavo.com/assets/login/images/login-image.svg");
+        background-repeat: no-repeat,no-repeat,no-repeat;
+        background-position: right top,left top,center;
+        background-attachment: fixed,fixed,fixed;
+        background-size: 800px,600px,500px;
+        
+    }
+    h1 {
+        background: -webkit-linear-gradient(270deg,#b527cf,#3bd9d9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    
+
+    .container {
+        width: 300px;
+        max-width: 400px;
+        padding: 2em 2em 0.5em;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+        background: #ffffff;
+        border-radius: 40px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        height: 350px;
+        margin: 8em	auto;
+        opacity: 0.9;
+    }
+    
+    .container,
+    .form__input,
+    .form__button {
+        font: 500 1rem 'Quicksand', sans-serif;
+    }
+    
+    .form--hidden {
+        display: none;
+    }
+    
+    .form > *:first-child {
+        margin-top: 0;
+    }
+    
+    .form > *:last-child {
+        margin-bottom: 0;
+    }
+    
+    .form__title {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    
+    .form__message {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .form__message--success {
+        color: var(--color-success);
+    }
+    
+    .form__message--error {
+        color: var(--color-error);
+    }
+    
+    .form__input-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form__input {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        box-sizing: border-box;
+        border-radius: var(--border-radius);
+        border: 1px solid #dddddd;
+        outline: none;
+        background: #eeeeee;
+        transition: background 0.2s, border-color 0.2s;
+    }
+    
+    .form__input:focus {
+        border-color: var(--color-primary);
+        background: #ffffff;
+    }
+    
+    .form__input--error {
+        color: var(--color-error);
+        border-color: var(--color-error);
+    }
+    
+    .form__input-error-message {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--color-error);
+    }
+    
+    .form__button {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #ffffff;
+        border: none;
+        border-radius: var(--border-radius);
+        outline: none;
+        cursor: pointer;
+        background: var(--color-primary);
+    }
+    
+    .form__button:hover {
+        background: var(--color-primary-dark);
+    }
+    
+    .form__button:active {
+        transform: scale(0.98);
+    }
+    
+    .form__text {
+        text-align: center;
+    }
+    
+    .form__link {
+        color: var(--color-secondary);
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .form__link:hover {
+        text-decoration: underline;
+    }
+    .alert.alert-danger {
+        text-align: left;
+        color: red;
+        padding: 10%;
+        border: turquoise;
+        border-radius: 10px;
+        background: skyblue;
+      }
+</style>
+<body>
+    <div class="cover">
+    </div>
+    <div class="container">
+        <form class="form" id="login" action="login_user" method="post">
+            {% csrf_token %}
+            <h1 class="form__title">WELCOME</h1>
+            <div class="form__message form__message--error"></div>
+            <div class="form__input-group">
+                <input type="text" name="username" class="form__input" id="username" autofocus placeholder="Username or email" required>
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input type="password" name="password" class="form__input" id="password" autofocus placeholder="Password" required>
+                <div class="form__input-error-message"></div>
+            </div>
+            <button class="form__button" type="submit" name="submit" placeholder="VERIFY">Log In</button>
+            <p class="form__text">
+                <a href="forgot.html" class="form__link">Forgot your password?</a>
+            </p>
+            <p class="form__text">
+                <a class="form__link" href="register" id="linkCreateAccount">Don't have an account? Create account</a>
+            </p>
+        </form>
+    </div>
+    <div class="form-group">
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
+    <!--
+    
+    {% load static %} 
+<img src="{% static 'templates/static/images/img02.png' %}">
+
+background: url('static/images/img02.png'),url('static/images/img01.jpg');
+        background-size: 800px;
+        background-repeat: no-repeat,no-repeat;
+        background-position: Right,left;-->
+</body>
+<script src="https://use.fontawesome.com/f06cf1997e.js"></script>
+</html>

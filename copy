@@ -1,0 +1,25 @@
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="welcome.html">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="login_user">Log In</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="register">Sign In</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="contact.html">Feedback</a>
+    </li>
+</ul>
+.nav.justify-content-end {
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    background: #00414c;
+    height: 70px;
+}
+.nav-link {
+    font-size: xx-large;
+    color: white;
+    display: final;
+}
